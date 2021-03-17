@@ -1,5 +1,7 @@
 package au.edu.jcu.CP3406.A1.resttimer;
 import android.annotation.SuppressLint;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 
 public class Timer {
@@ -24,11 +26,26 @@ public class Timer {
         }
     }
 
+    void setTime(int inputSeconds){
+        int remainder = inputSeconds % 60;
+        this.minutes = (inputSeconds - remainder) / 60;
+        this.seconds = remainder;
+        Log.d("TIME", String.format("%s minutes, %s seconds", minutes, seconds));
+    }
+
     @SuppressLint("DefaultLocale")
     @NonNull
     @Override
     public String toString() {
         return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    public int getMinutes() {
+        return minutes;
+    }
+
+    public int getSeconds() {
+        return seconds;
     }
 
 }
